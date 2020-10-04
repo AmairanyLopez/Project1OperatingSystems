@@ -25,7 +25,7 @@ int imthechild(const char *path_to_exec, char *const args[])
 	
 	//getting the path
 	char allpaths[50][200];
-        char whole[120] =getenv("PATH");
+        char *whole =getenv("PATH");
 	const char delim[2]=":";
 	char *pad;
 	pad=strtok(str,s);
