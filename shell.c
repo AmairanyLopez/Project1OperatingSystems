@@ -62,7 +62,7 @@ void imtheparent(pid_t child_pid, int run_in_background)
 		return;
 	}
 	// TO-DO P5.4
-	waitpid(child_pid, &child_return_val);
+	waitpid(child_pid, &child_return_val, WNOHANG|WUNTRACED);
 	/* Use the WEXITSTATUS to extract the status code from the return value */
 	child_error_code = WEXITSTATUS(child_return_val);
 	fprintf(stderr,
