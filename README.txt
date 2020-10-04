@@ -59,6 +59,7 @@ STEP 4:  Questions
 
   3. What would happen if this program did not use the fork function, but
      just used execv directly?  (Try it!)
+     THE CHILD WAS NOT ABLE TO EXECUTE THE COMMAND GIVEN AND NEVER RETURNED TO THE PARENT TO PROVIDE AN OUTPUT.
 
      Try temporarily changing the code 'pid_from_fork = fork();'
      to 'pid_from_fork = 0;'
