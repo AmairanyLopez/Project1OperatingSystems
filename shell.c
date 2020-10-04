@@ -22,10 +22,26 @@ enum { STATE_SPACE, STATE_NON_SPACE };	/* Parser states */
 int imthechild(const char *path_to_exec, char *const args[])
 {
 	// TO-DO P5.1
-			fprintf(stderr,
-	        "  This is what was there BEFORE =%s'\n",
-	        path_to_exec);
-	path_to_exec= getenv("PATH");
+	
+	//getting the path
+	char allpaths[50][200];
+        char whole[120] =getenv("PATH");
+	const char delim[2]=":";
+	char *pad;
+	pad=strtok(str,s);
+	int i =0;
+	while(pad !=NULL){
+		strcpy(allpaths[i++], pad);
+		pad=strtok(NULL,delim);
+	}
+	
+	//store command on temp
+	char temporary[100]=path_to_exec;
+	
+	path_to_exec= allpaths[2];
+	strcat(path_to_exec, temporary);
+	
+	
 		fprintf(stderr,
 	        "  This is what rhe new function gathered =%s'\n",
 	        path_to_exec);
