@@ -43,9 +43,7 @@ int imthechild(const char *path_to_exec, char *const args[])
 	strcat(path_to_exec, temporary);
 	
 	
-		fprintf(stderr,
-	       "  ++++++++++++++++++++++++++++++++++++++++=%s'\n",
-	        path_to_exec);
+		//fprintf(stderr,"  ++++++++++++++++++++++++++++++++++++++++=%s'\n",  path_to_exec);
 	//
 	return execv(path_to_exec, args) ? -1 : 0;
 }
@@ -64,7 +62,7 @@ void imtheparent(pid_t child_pid, int run_in_background)
 		return;
 	}
 	// TO-DO P5.4
-	wait(&child_return_val);
+	waitpid(child_pid, &child_return_val);
 	/* Use the WEXITSTATUS to extract the status code from the return value */
 	child_error_code = WEXITSTATUS(child_return_val);
 	fprintf(stderr,
