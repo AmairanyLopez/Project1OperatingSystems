@@ -77,7 +77,37 @@ void imtheparent(pid_t child_pid, int run_in_background)
 		        child_pid, child_error_code);
 	}
 }
-
+//////////////////////////////STACK from "https://www.educative.io/edpresso/how-to-implement-a-stack-in-c-using-an-array" <--credit
+void push(char element, char stack[], int *top, int stackSize){
+ if(*top == -1){
+  stack[stackSize - 1] = element;
+  *top = stackSize - 1;
+ }
+ else if(*top == 0){
+  printf("The stack is already full. \n");
+ }
+ else{
+  stack[(*top) - 1] = element;
+  (*top)--;
+ }
+}
+void pop(char stack[], int *top, int stackSize){
+ if(*top == -1){
+   printf("The stack is empty. \n");
+ }
+ else{
+  printf("Element popped: %c \n", stack[(*top)]);
+  // If the element popped was the last element in the stack
+  // then set top to -1 to show that the stack is empty
+  if((*top) == stackSize - 1){
+    (*top) = -1;
+  }
+  else{
+    (*top)++;
+  }
+ }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* MAIN PROCEDURE SECTION */
 int main(int argc, char **argv)
 {
@@ -97,6 +127,11 @@ int main(int argc, char **argv)
 	/* Allow the Shell prompt to display the pid of this process */
 	shell_pid = getpid();
 
+	//create stack here
+	int stack_size=50;
+	char stack[stack_size];
+	int top=-1;
+	
 	while (1) {
 	/* The Shell runs in an infinite loop, processing input. */
 
@@ -149,6 +184,7 @@ int main(int argc, char **argv)
 
 		} else if (!strcmp(exec_argv[0], "cd") && exec_argc > 1) {
 		/* Running 'cd' changes the Shell's working directory. */
+			push(exec_argv[0], stack, &top, stack_size);    //////////////////stack code
 			/* Alternative: try chdir inside a forked child: if(fork() == 0) { */
 			if (chdir(exec_argv[1]))
 				/* Error: change directory failed */
@@ -157,6 +193,7 @@ int main(int argc, char **argv)
 
 		} else {
 		/* Execute Commands */
+			push(exec_argv[0], stack, &top, stack_size); ///////////////////////stack code
 			/* Try replacing 'fork()' with '0'.  What happens? */
 			pid_from_fork = fork(); 
 			//pid_from_fork = 0;
