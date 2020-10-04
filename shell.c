@@ -43,9 +43,9 @@ int imthechild(const char *path_to_exec, char *const args[])
 	strcat(path_to_exec, temporary);
 	
 	
-		fprintf(stderr,
-	        "  This is what rhe new function gathered =%s'\n",
-	        path_to_exec);
+		//fprintf(stderr,
+	      //  "  This is what rhe new function gathered =%s'\n",
+	       // path_to_exec);
 	//
 	return execv(path_to_exec, args) ? -1 : 0;
 }
