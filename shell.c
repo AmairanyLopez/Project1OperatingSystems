@@ -36,7 +36,7 @@ int imthechild(const char *path_to_exec, char *const args[])
 	}
 	
 	//store command on temp
-	char temporary[100]=path_to_exec;
+	char *temporary=path_to_exec;
 	
 	path_to_exec= allpaths[2];
 	strcat(path_to_exec, temporary);
