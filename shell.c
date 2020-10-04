@@ -23,6 +23,9 @@ int imthechild(const char *path_to_exec, char *const args[])
 {
 	// TO-DO P5.1
 	path_to_exec= getenv("PATH");
+		fprintf(stderr,
+	        "  This is what rhe new function gathered =%s'\n",
+	        path_to_exec);
 	//
 	return execv(path_to_exec, args) ? -1 : 0;
 }
