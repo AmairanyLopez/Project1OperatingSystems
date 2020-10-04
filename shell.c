@@ -39,6 +39,7 @@ int imthechild(const char *path_to_exec, char *const args[])
 	char *temporary=path_to_exec;
 	
 	path_to_exec= allpaths[2];
+	strcat(path_to_exec, "/");
 	strcat(path_to_exec, temporary);
 	
 	
