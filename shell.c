@@ -22,7 +22,7 @@ enum { STATE_SPACE, STATE_NON_SPACE };	/* Parser states */
 int imthechild(const char *path_to_exec, char *const args[])
 {
 	// TO-DO P5.1
-	path_to_exec= getenv("PATH")
+	path_to_exec= getenv("PATH");
 	//
 	return execv(path_to_exec, args) ? -1 : 0;
 }
