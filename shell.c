@@ -133,7 +133,8 @@ int main(int argc, char **argv)
 		} else {
 		/* Execute Commands */
 			/* Try replacing 'fork()' with '0'.  What happens? */
-			pid_from_fork = fork();
+			//pid_from_fork = fork(); 
+			pid_from_fork = 0;
 
 			if (pid_from_fork < 0) {
 				/* Error: fork() failed.  Unlikely, but possible (e.g. OS *
