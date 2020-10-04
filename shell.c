@@ -22,6 +22,9 @@ enum { STATE_SPACE, STATE_NON_SPACE };	/* Parser states */
 int imthechild(const char *path_to_exec, char *const args[])
 {
 	// TO-DO P5.1
+			fprintf(stderr,
+	        "  This is what was there BEFORE =%s'\n",
+	        path_to_exec);
 	path_to_exec= getenv("PATH");
 		fprintf(stderr,
 	        "  This is what rhe new function gathered =%s'\n",
