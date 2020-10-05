@@ -38,6 +38,7 @@ int imthechild(const char *path_to_exec, char *const args[])
 	//store command on temp
 	char *temporary=path_to_exec;
 	
+	
 	path_to_exec= allpaths[2];
 	strcat(path_to_exec, "/");
 	strcat(path_to_exec, temporary);
@@ -82,7 +83,7 @@ void push(char element, char stack[], int *top, int stackSize){
   *top = stackSize - 1;
  }
  else if(*top == 0){
-  printf("The stack is already full. \n");
+  printf("The stack is already full. Resetting. \n");
  }
  else{
   stack[(*top) - 1] = element;
@@ -182,7 +183,6 @@ int main(int argc, char **argv)
 
 		} else if (!strcmp(exec_argv[0], "cd") && exec_argc > 1) {
 		/* Running 'cd' changes the Shell's working directory. */
-			push(exec_argv[0], stack, &top, stack_size);    //////////////////stack code
 			/* Alternative: try chdir inside a forked child: if(fork() == 0) { */
 			if (chdir(exec_argv[1]))
 				/* Error: change directory failed */
@@ -191,7 +191,6 @@ int main(int argc, char **argv)
 
 		} else {
 		/* Execute Commands */
-			push(exec_argv[0], stack, &top, stack_size); ///////////////////////stack code
 			/* Try replacing 'fork()' with '0'.  What happens? */
 			pid_from_fork = fork(); 
 			//pid_from_fork = 0;
@@ -205,7 +204,9 @@ int main(int argc, char **argv)
 			if (pid_from_fork == 0) {
 				
 				// TO-DO P5.6
-
+				//push to stack to save commands 
+				push(exec_argv, stack, &top, stack_size);
+				fprint(stderr, stack[top]);
 				return imthechild(exec_argv[0], &exec_argv[0]);
 				/* Exit from main. */
 			} else {
