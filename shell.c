@@ -17,6 +17,7 @@
 
 /* VARIABLE SECTION */
 enum { STATE_SPACE, STATE_NON_SPACE };	/* Parser states */
+int global_var = 0;
 
 
 int imthechild(const char *path_to_exec, char *const args[])
@@ -37,6 +38,10 @@ int imthechild(const char *path_to_exec, char *const args[])
 	
 	//store command on temp
 	char *temporary=path_to_exec;
+	if (temporary = "./shell"){global_var++; 
+		 if (global_var>=3){
+			 fprintf(stderr, "Too deep!");
+			 return;}}
 	
 	
 	path_to_exec= allpaths[2];
