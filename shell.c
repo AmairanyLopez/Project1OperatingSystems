@@ -67,7 +67,7 @@ void imtheparent(pid_t child_pid, int run_in_background)
 	/* Use the WEXITSTATUS to extract the status code from the return value */
 	child_error_code = WEXITSTATUS(child_return_val);
 	fprintf(stderr,
-	        "  Parent says 'wait() returned so the child with pid=%d is finished.'\n",
+	        "  Parent says 'waitpid() returned so the child with pid=%d is finished.'\n",
 	        child_pid);
 	if (child_error_code != 0) {
 		/* Error: Child process failed. Most likely a failed exec */
@@ -206,8 +206,8 @@ int main(int argc, char **argv)
 				
 				// TO-DO P5.6
 				//push to stack to save commands 
-				push(**exec_argv, stack, &top, stack_size);
-				fprintf(stderr, stack[top]);
+				//push(**exec_argv, stack, &top, stack_size);
+				//fprintf(stderr, stack[top]);
 				return imthechild(exec_argv[0], &exec_argv[0]);
 				/* Exit from main. */
 			} else {
