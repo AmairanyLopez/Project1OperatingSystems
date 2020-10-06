@@ -130,12 +130,12 @@ int main(int argc, char **argv)
 	int stack_size=50;
 	char stack[stack_size];
 	int top=-1;
+	int counts=0;
 	
 	while (1) {
 	/* The Shell runs in an infinite loop, processing input. */
 
 		// TO-DO P5.2
-		int counts= 50-top;
 		fprintf(stdout, "Shell(pid=%d)%d> ", shell_pid, counts);
 		fflush(stdout);
 
@@ -206,7 +206,7 @@ int main(int argc, char **argv)
 				
 				// TO-DO P5.6
 				//push to stack to save commands 
-				push(exec_argv, stack, &top, stack_size);
+				push(**exec_argv, stack, &top, stack_size);
 				fprintf(stderr, stack[top]);
 				return imthechild(exec_argv[0], &exec_argv[0]);
 				/* Exit from main. */
