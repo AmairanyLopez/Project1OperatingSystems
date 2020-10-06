@@ -207,7 +207,7 @@ int main(int argc, char **argv)
 				// TO-DO P5.6
 				//push to stack to save commands 
 				push(exec_argv[0], stack, &top, stack_size);
-				fprintf(top[0]);
+				fprintf(stderr, top[0]);
 				return imthechild(exec_argv[0], &exec_argv[0]);
 				/* Exit from main. */
 			} else {
