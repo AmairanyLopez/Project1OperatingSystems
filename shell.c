@@ -215,7 +215,7 @@ int main(int argc, char **argv)
 				//push to stack to save commands 
 				push(*exec_argv[0], stack, &top, stack_size);
 				counts++;
-				//fprintf(stderr, stack[top]);
+				printf("Element on top: %c\n", stack[top]);
 				return imthechild(exec_argv[0], &exec_argv[0]);
 				/* Exit from main. */
 			} else {
