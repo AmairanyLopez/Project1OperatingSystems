@@ -80,13 +80,13 @@ void imtheparent(pid_t child_pid, int run_in_background)
 struct stack_entry {
   char *data;
   struct stack_entry *next;
-}
+};
 struct stack_t
 {
   struct stack_entry *head;
   size_t stackSize;  // not strictly necessary, but
                      // useful for logging
-}
+};
 struct stack_t *newStack(void)
 {
   struct stack_t *stack = malloc(sizeof *stack);
@@ -96,14 +96,14 @@ struct stack_t *newStack(void)
     stack->stackSize = 0;
   }
   return stack;
-}
+};
 char *copyString(char *str)
 {
   char *tmp = malloc(strlen(str) + 1);
   if (tmp)
     strcpy(tmp, str);
   return tmp;
-}
+};
 void push(struct stack_t *theStack, char *value)
 {
   struct stack_entry *entry = malloc(sizeof *entry); 
@@ -118,14 +118,14 @@ void push(struct stack_t *theStack, char *value)
   {
     // handle error here
   }
-}
+};
 char *top(struct stack_t *theStack)
 {
   if (theStack && theStack->head)
     return theStack->head->data;
   else
     return NULL;
-}
+};
 void pop(struct stack_t *theStack)
 {
   if (theStack->head != NULL)
@@ -136,18 +136,18 @@ void pop(struct stack_t *theStack)
     free(tmp);
     theStack->stackSize--;
   }
-}
+};
 void clear (struct stack_t *theStack)
 {
   while (theStack->head != NULL)
     pop(theStack);
-}
+};
 void destroyStack(struct stack_t **theStack)
 {
   clear(*theStack);
   free(*theStack);
   *theStack = NULL;
-}
+};
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* MAIN PROCEDURE SECTION */
 int main(int argc, char **argv)
