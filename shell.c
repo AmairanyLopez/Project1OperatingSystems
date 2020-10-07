@@ -77,34 +77,76 @@ void imtheparent(pid_t child_pid, int run_in_background)
 	}
 }
 //////////////////////////////STACK from "https://www.educative.io/edpresso/how-to-implement-a-stack-in-c-using-an-array" <--credit
-void push(char element, char stack[], int *top, int stackSize){
- if(*top == -1){
-  stack[stackSize - 1] = element;
-  *top = stackSize - 1;
- }
- else if(*top == 0){
-  printf("The stack is already full. Resetting. \n");
- }
- else{
-  stack[(*top) - 1] = element;
-  (*top)--;
- }
+struct stack_entry {
+  char *data;
+  struct stack_entry *next;
 }
-void pop(char stack[], int *top, int stackSize){
- if(*top == -1){
-   printf("The stack is empty. \n");
- }
- else{
-  printf("Element popped: %c \n", stack[(*top)]);
-  // If the element popped was the last element in the stack
-  // then set top to -1 to show that the stack is empty
-  if((*top) == stackSize - 1){
-    (*top) = -1;
+struct stack_t
+{
+  struct stack_entry *head;
+  size_t stackSize;  // not strictly necessary, but
+                     // useful for logging
+}
+struct stack_t *newStack(void)
+{
+  struct stack_t *stack = malloc(sizeof *stack);
+  if (stack)
+  {
+    stack->head = NULL;
+    stack->stackSize = 0;
   }
-  else{
-    (*top)++;
+  return stack;
+}
+char *copyString(char *str)
+{
+  char *tmp = malloc(strlen(str) + 1);
+  if (tmp)
+    strcpy(tmp, str);
+  return tmp;
+}
+void push(struct stack_t *theStack, char *value)
+{
+  struct stack_entry *entry = malloc(sizeof *entry); 
+  if (entry)
+  {
+    entry->data = copyString(value);
+    entry->next = theStack->head;
+    theStack->head = entry;
+    theStack->stackSize++;
   }
- }
+  else
+  {
+    // handle error here
+  }
+}
+char *top(struct stack_t *theStack)
+{
+  if (theStack && theStack->head)
+    return theStack->head->data;
+  else
+    return NULL;
+}
+void pop(struct stack_t *theStack)
+{
+  if (theStack->head != NULL)
+  {
+    struct stack_entry *tmp = theStack->head;
+    theStack->head = theStack->head->next;
+    free(tmp->data);
+    free(tmp);
+    theStack->stackSize--;
+  }
+}
+void clear (struct stack_t *theStack)
+{
+  while (theStack->head != NULL)
+    pop(theStack);
+}
+void destroyStack(struct stack_t **theStack)
+{
+  clear(*theStack);
+  free(*theStack);
+  *theStack = NULL;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* MAIN PROCEDURE SECTION */
@@ -127,13 +169,11 @@ int main(int argc, char **argv)
 	shell_pid = getpid();
 
 	//create stack here
-	int stack_size=50;
-	char stack[stack_size];
-	int top=-1;
-	int counts=0;
+	struct stack_t *estack = newStack();
+	char *data;
 	
 	while (1) {
-	/* The Shell runs in an infinite loop, processing input. */
+	/* The Sh8ell runs in an infinite loop, processing input. */
 
 		// TO-DO P5.2
 		fprintf(stdout, "Shell(pid=%d)%d> ", shell_pid, counts);
@@ -216,9 +256,9 @@ int main(int argc, char **argv)
 				/* Exit from main. */
 			} else {
 					//push to stack to save commands 
-				push(**exec_argv, stack, &top, stack_size);
+				push(estack, exec_argv);
 				counts++;
-				printf("Element on top: %c\n", stack[top]);
+				printf("Element on top: %c\n", top(estack));
 				imtheparent(pid_from_fork, run_in_background);
 				/* Parent will continue around the loop. */
 			}
