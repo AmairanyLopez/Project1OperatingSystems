@@ -210,13 +210,13 @@ int main(int argc, char **argv)
 		 			if (global_var>=3){
 					 fprintf(stderr, "Too deep!");
 					 return;}
-					else { return imtheparent(pid_from_fork, run_in_background);}
+					else { imtheparent(pid_from_fork, run_in_background); return; }
 				}
 				//push to stack to save commands 
 				push(*exec_argv[0], stack, &top, stack_size);
 				counts++;
 				//fprintf(stderr, stack[top]);
-				imthechild(exec_argv[0], &exec_argv[0]); return;
+				return imthechild(exec_argv[0], &exec_argv[0]);
 				/* Exit from main. */
 			} else {
 				imtheparent(pid_from_fork, run_in_background);
