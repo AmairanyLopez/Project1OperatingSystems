@@ -205,7 +205,7 @@ int main(int argc, char **argv)
 			if (pid_from_fork == 0) {
 				
 				// TO-DO P5.6
-				if (exec_argv[0] == "./shell"){
+				if (exec_argv[0] == "sub"){
 		 			global_var++; 
 		 			if (global_var>=3){
 					 fprintf(stderr, "Too deep!");
@@ -216,7 +216,7 @@ int main(int argc, char **argv)
 				push(*exec_argv[0], stack, &top, stack_size);
 				counts++;
 				//fprintf(stderr, stack[top]);
-				return imthechild(exec_argv[0], &exec_argv[0]);
+				imthechild(exec_argv[0], &exec_argv[0]); return;
 				/* Exit from main. */
 			} else {
 				imtheparent(pid_from_fork, run_in_background);
