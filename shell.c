@@ -257,7 +257,7 @@ int main(int argc, char **argv)
 				/* Exit from main. */
 			} else {
 					//push to stack to save commands 
-				push(estack, exec_argv);
+				push(estack, exec_argv[0]);
 				counts++;
 				printf("Element on top: %c\n", top(estack));
 				imtheparent(pid_from_fork, run_in_background);
