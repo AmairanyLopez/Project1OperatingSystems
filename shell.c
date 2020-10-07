@@ -171,6 +171,7 @@ int main(int argc, char **argv)
 	//create stack here
 	struct stack_t *estack = newStack();
 	char *data;
+	int counts=0;
 	
 	while (1) {
 	/* The Sh8ell runs in an infinite loop, processing input. */
