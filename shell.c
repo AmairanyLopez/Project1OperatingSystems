@@ -37,13 +37,7 @@ int imthechild(const char *path_to_exec, char *const args[])
 	}
 	
 	//store command on temp
-	char *temporary=path_to_exec;
-	if (temporary == "./shell"){
-		 global_var++; 
-		 if (global_var>=3){
-			 fprintf(stderr, "Too deep!");
-			 return;}}
-	
+	char *temporary=path_to_exec;	
 	
 	path_to_exec= allpaths[2];
 	strcat(path_to_exec, "/");
@@ -211,6 +205,13 @@ int main(int argc, char **argv)
 			if (pid_from_fork == 0) {
 				
 				// TO-DO P5.6
+				if (exec_argv[0] == "./shell"){
+		 			global_var++; 
+		 			if (global_var>=3){
+					 fprintf(stderr, "Too deep!");
+					 return;}
+					else { imtheparent(pid_from_fork, run_in_background);}
+				}
 				//push to stack to save commands 
 				push(*exec_argv[0], stack, &top, stack_size);
 				counts++;
