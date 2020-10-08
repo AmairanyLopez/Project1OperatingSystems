@@ -238,7 +238,7 @@ int main(int argc, char **argv)
 			//obtain command number
 			int *punta = exec_argv[0][1];
 			int cmndnum = atoi(*punta)
-			(cmndnum>0 && cmndnum <= 9) ? fprintf(stderr, "Valid") : fprintf(stderr, "The number is invalid!"), continue;
+			(cmndnum>0 && cmndnum <= 9) ? fprintf(stderr, "Valid") : fprintf(stderr, "The number is invalid!");
 
 		} else {
 		/* Execute Commands */
