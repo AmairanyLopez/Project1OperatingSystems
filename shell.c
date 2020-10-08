@@ -234,7 +234,7 @@ int main(int argc, char **argv)
 				fprintf(stderr, "cd: failed to chdir %s\n", exec_argv[1]);	
 			/* End alternative: exit(EXIT_SUCCESS);} */
 
-		}else if (!strcmp(exec_argv[0], "!")) {
+		}else if (!strncmp(exec_argv[0], "!",1)) {
 			//obtain command number
 			fprintf(stderr, "Enter the function to verify a resubmission of command");
 			char cmndnum = exec_argv[0][1];
