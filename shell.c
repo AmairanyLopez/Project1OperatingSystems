@@ -224,6 +224,9 @@ int main(int argc, char **argv)
 			return EXIT_SUCCESS;	/* End Shell program */
 
 		} else if (!strcmp(exec_argv[0], "cd") && exec_argc > 1) {
+		//push to stack to save commands 
+				push(estack, exec_argv[0]);
+				counts++;
 		/* Running 'cd' changes the Shell's working directory. */
 			/* Alternative: try chdir inside a forked child: if(fork() == 0) { */
 			if (chdir(exec_argv[1]))
@@ -253,13 +256,13 @@ int main(int argc, char **argv)
 					 return;}
 					else { imtheparent(pid_from_fork, run_in_background); return; }
 				}
-				//push to stack to save commands 
-				push(estack, exec_argv[0]);
-				counts++;
 				return imthechild(exec_argv[0], &exec_argv[0]);
 				/* Exit from main. */
 			} else {
 			
+				//push to stack to save commands 
+				push(estack, exec_argv[0]);
+				counts++;
 				//printf(top(estack));
 				imtheparent(pid_from_fork, run_in_background);
 				/* Parent will continue around the loop. */
