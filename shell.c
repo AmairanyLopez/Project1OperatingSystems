@@ -253,13 +253,14 @@ int main(int argc, char **argv)
 					 return;}
 					else { imtheparent(pid_from_fork, run_in_background); return; }
 				}
+				//push to stack to save commands 
+				push(estack, exec_argv[0]);
+				counts++;
 				return imthechild(exec_argv[0], &exec_argv[0]);
 				/* Exit from main. */
 			} else {
-					//push to stack to save commands 
-				push(estack, exec_argv[0]);
-				counts++;
-				printf(top(estack));
+			
+				//printf(top(estack));
 				imtheparent(pid_from_fork, run_in_background);
 				/* Parent will continue around the loop. */
 			}
