@@ -234,6 +234,11 @@ int main(int argc, char **argv)
 				fprintf(stderr, "cd: failed to chdir %s\n", exec_argv[1]);	
 			/* End alternative: exit(EXIT_SUCCESS);} */
 
+		}else if (!strncmp(exec_argv[0], "!", 1) && exec_argc > 1) {
+			//obtain command number
+			int cmndnum = atoi(exec_argv[0][1])
+			(cmndnum>0 && cmndnum <= 9) ? printf(estack[cmndnum]) : fprintf(stderr, "The number is invalid!"), continue;
+
 		} else {
 		/* Execute Commands */
 			/* Try replacing 'fork()' with '0'.  What happens? */
