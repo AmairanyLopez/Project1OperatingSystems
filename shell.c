@@ -236,8 +236,8 @@ int main(int argc, char **argv)
 
 		}else if (!strncmp(exec_argv[0], "!", 1) && exec_argc > 1) {
 			//obtain command number
-			int *punta = exec_argv[0][1];
-			int cmndnum = atoi(*punta)
+			char punta[1] = exec_argv[0][1];
+			int cmndnum = atoi(punta)
 			(cmndnum>0 && cmndnum <= 9) ? fprintf(stderr, "Valid") : fprintf(stderr, "The number is invalid!");
 
 		} else {
