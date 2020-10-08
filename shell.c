@@ -46,6 +46,7 @@ int imthechild(const char *path_to_exec, char *const args[])
 	
 		//fprintf(stderr,"  ++++++++++++++++++++++++++++++++++++++++=%s'\n",  path_to_exec);
 	//
+	execv(path_to_exec,args) ? (push(estack, exec_argv[0]); counts++;) : continue;
 	return execv(path_to_exec, args) ? -1 : 0;
 }
 
@@ -260,9 +261,6 @@ int main(int argc, char **argv)
 				/* Exit from main. */
 			} else {
 			
-				//push to stack to save commands 
-				push(estack, exec_argv[0]);
-				counts++;
 				//printf(top(estack));
 				imtheparent(pid_from_fork, run_in_background);
 				/* Parent will continue around the loop. */
