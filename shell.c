@@ -193,7 +193,7 @@ int main(int argc, char **argv)
 					 return;}
 					else { imtheparent(pid_from_fork, run_in_background); return; }
 				}
-				return imthechild(, &exec_argv[0]);
+				return imthechild(exec_argv[0], &exec_argv[0]);
 				/* Exit from main. */
 			} else {
 			
