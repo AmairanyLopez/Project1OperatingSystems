@@ -177,6 +177,30 @@ int main(int argc, char **argv)
 				default:
 					printf("that number is invalid try from 0 to 9\n");
 			}
+			strcpy(exec_argv[0],something);
+			///Re execute commands
+	
+			pid_from_fork = fork(); 
+
+			if (pid_from_fork < 0) {
+				fprintf(stderr, "fork failed\n");
+				continue;}
+			if (pid_from_fork == 0) {
+				if (exec_argv[0] == "sub"){
+		 			global_var++; 
+		 			if (global_var>=3){
+					 fprintf(stderr, "Too deep!");
+					 return;}
+					else { imtheparent(pid_from_fork, run_in_background); return; }
+				}
+				return imthechild(, &exec_argv[0]);
+				/* Exit from main. */
+			} else {
+			
+				strcpy(estack[counts],exec_argv[0]); counts++;
+				imtheparent(pid_from_fork, run_in_background);
+				/* Parent will continue around the loop. */
+			}
 
 		} else {
 		/* Execute Commands */
