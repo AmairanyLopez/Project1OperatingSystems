@@ -185,14 +185,6 @@ int main(int argc, char **argv)
 			if (pid_from_fork < 0) {
 				fprintf(stderr, "fork failed\n");
 				continue;}
-			if (pid_from_fork == 0) {
-				if (exec_argv[0] == "sub"){
-		 			global_var++; 
-		 			if (global_var>=3){
-					 fprintf(stderr, "Too deep!");
-					 return;}
-					else { imtheparent(pid_from_fork, run_in_background); return; }
-				}
 				return imthechild(exec_argv[0], &exec_argv[0]);
 				/* Exit from main. */
 			} else {
@@ -222,7 +214,10 @@ int main(int argc, char **argv)
 		 			if (global_var>=3){
 					 fprintf(stderr, "Too deep!");
 					 return;}
-					else { imtheparent(pid_from_fork, run_in_background); return; }
+					else {  strcpy(exec_argv[0], "./shell");
+						pid_from_fork=fork();
+					        return imthechild(exec_argv[0], &exec_argv[0]);
+					     }
 				}
 				return imthechild(exec_argv[0], &exec_argv[0]);
 				/* Exit from main. */
