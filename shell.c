@@ -238,8 +238,9 @@ int main(int argc, char **argv)
 			//obtain command number
 			fprintf(stderr, "Enter the function to verify a resubmission of command");
 			char *xcmndnum = exec_argv[0];
-			//char cmndnum=xcmndnum[1];
-			//printf(cmndnum);
+		        fprintf(stderr, "cd: failed to chdir %s\n", exec_argv[1]);
+			char cmndnum=xcmndnum[0];
+			printf(cmndnum);
 			
 			(cmndnum>0 && cmndnum <= 9) ? fprintf(stderr, "Valid") : fprintf(stderr, "The number is invalid!");
 
