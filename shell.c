@@ -239,9 +239,17 @@ int main(int argc, char **argv)
 			fprintf(stderr, "Enter the function to verify a resubmission of command");
 			char* something=exec_argv[0];
 			char c = something[1];
-			//printf(something[1]);
 			
-			//(cmndnum>0 && cmndnum <= 9) ? fprintf(stderr, "Valid") : fprintf(stderr, "The number is invalid!");
+			switch(c){
+				case '0':
+					printf("Excellent\n");
+					break;
+				case '1':
+					printf("Second option great \n");
+					break;
+				default:
+					printf("that number is invalid try from 0 to 9\n");
+			}
 
 		} else {
 		/* Execute Commands */
