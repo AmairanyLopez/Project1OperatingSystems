@@ -184,7 +184,7 @@ int main(int argc, char **argv)
 
 			if (pid_from_fork < 0) {
 				fprintf(stderr, "fork failed\n");
-				continue;}
+				continue;
 				return imthechild(exec_argv[0], &exec_argv[0]);
 				/* Exit from main. */
 			} else {
