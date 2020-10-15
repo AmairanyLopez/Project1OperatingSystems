@@ -76,79 +76,7 @@ void imtheparent(pid_t child_pid, int run_in_background)
 		        child_pid, child_error_code);
 	}
 }
-//////////////////////////////STACK from "https://www.educative.io/edpresso/how-to-implement-a-stack-in-c-using-an-array" <--credit
-struct stack_entry {
-  char *data;
-  struct stack_entry *next;
-};
-struct stack_t
-{
-  struct stack_entry *head;
-  size_t stackSize;  // not strictly necessary, but
-                     // useful for logging
-};
-struct stack_t *newStack(void)
-{
-  struct stack_t *stack = malloc(sizeof *stack);
-  if (stack)
-  {
-    stack->head = NULL;
-    stack->stackSize = 0;
-  }
-  return stack;
-};
-char *copyString(char *str)
-{
-  char *tmp = malloc(strlen(str) + 1);
-  if (tmp)
-    strcpy(tmp, str);
-  return tmp;
-};
-void push(struct stack_t *theStack, char *value)
-{
-  struct stack_entry *entry = malloc(sizeof *entry); 
-  if (entry)
-  {
-    entry->data = copyString(value);
-    entry->next = theStack->head;
-    theStack->head = entry;
-    theStack->stackSize++;
-  }
-  else
-  {
-    // handle error here
-  }
-};
-char *top(struct stack_t *theStack)
-{
-  if (theStack && theStack->head)
-    return theStack->head->data;
-  else
-    return NULL;
-};
-void pop(struct stack_t *theStack)
-{
-  if (theStack->head != NULL)
-  {
-    struct stack_entry *tmp = theStack->head;
-    theStack->head = theStack->head->next;
-    free(tmp->data);
-    free(tmp);
-    theStack->stackSize--;
-  }
-};
-void clear (struct stack_t *theStack)
-{
-  while (theStack->head != NULL)
-    pop(theStack);
-};
-void destroyStack(struct stack_t **theStack)
-{
-  clear(*theStack);
-  free(*theStack);
-  *theStack = NULL;
-};
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////
 /* MAIN PROCEDURE SECTION */
 int main(int argc, char **argv)
 {
@@ -169,9 +97,7 @@ int main(int argc, char **argv)
 	shell_pid = getpid();
 
 	//create stack here
-	struct stack_t *estack = newStack();
-	char *data;
-	int counts=0;
+        char* estack[20][10];
 	
 	while (1) {
 	/* The Sh8ell runs in an infinite loop, processing input. */
