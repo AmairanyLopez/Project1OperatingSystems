@@ -98,6 +98,7 @@ int main(int argc, char **argv)
 
 	//create stack here
         char* estack[20][10];
+	int counts=0;
 	
 	while (1) {
 	/* The Sh8ell runs in an infinite loop, processing input. */
@@ -151,7 +152,7 @@ int main(int argc, char **argv)
 
 		} else if (!strcmp(exec_argv[0], "cd") && exec_argc > 1) {
 		//push to stack to save commands 
-				push(estack, exec_argv[0]);
+				estack[counts]=exec_argv[0];
 				counts++;
 		/* Running 'cd' changes the Shell's working directory. */
 			/* Alternative: try chdir inside a forked child: if(fork() == 0) { */
@@ -203,7 +204,7 @@ int main(int argc, char **argv)
 				/* Exit from main. */
 			} else {
 			
-				push(estack, exec_argv[0]); counts++;
+				estack[counts]=exec_argv[0]; counts++;
 				//printf(top(estack));
 				imtheparent(pid_from_fork, run_in_background);
 				/* Parent will continue around the loop. */
