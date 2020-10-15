@@ -169,7 +169,7 @@ int main(int argc, char **argv)
 			
 			switch(c){
 				case '0':
-					printf(estack[c]);
+					fprintf(stderr, estack[c]);
 					break;
 				case '1':
 					printf("Second option great \n");
