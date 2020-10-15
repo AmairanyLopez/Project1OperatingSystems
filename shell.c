@@ -238,6 +238,7 @@ int main(int argc, char **argv)
 			//obtain command number
 			fprintf(stderr, "Enter the function to verify a resubmission of command");
 			char* something=exec_argv[0];
+			char c = something[1];
 			//printf(something[1]);
 			
 			//(cmndnum>0 && cmndnum <= 9) ? fprintf(stderr, "Valid") : fprintf(stderr, "The number is invalid!");
