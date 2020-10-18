@@ -24,9 +24,9 @@ int imthechild(const char *path_to_exec, char *const args[])
 {
 	// TO-DO P5.1
 	
-	//getting the path
+	//getting the path to the current directory
 	char allpaths[50][200];
-        char *whole =getenv("PATH");
+    char *whole =getenv("PATH");
 	const char delim[2]=":";
 	char *pad;
 	pad=strtok(whole,delim);
@@ -43,9 +43,7 @@ int imthechild(const char *path_to_exec, char *const args[])
 	strcat(path_to_exec, "/");
 	strcat(path_to_exec, temporary);
 	
-	
-		//fprintf(stderr,"  ++++++++++++++++++++++++++++++++++++++++=%s'\n",  path_to_exec);
-	//
+
 	return execv(path_to_exec, args) ? -1 : 0;
 }
 
@@ -62,6 +60,7 @@ void imtheparent(pid_t child_pid, int run_in_background)
 		        "  Parent says 'run_in_background=1 ... so we're not waiting for the child'\n");
 		return;
 	}
+
 	// TO-DO P5.4
 	waitpid(child_pid, &child_return_val, WUNTRACED);
 	/* Use the WEXITSTATUS to extract the status code from the return value */
@@ -97,7 +96,7 @@ int main(int argc, char **argv)
 	shell_pid = getpid();
 
 	//create stack here
-        char* estack[20][10];
+    char* estack[20][10];
 	int counts=0;
 	
 	while (1) {
@@ -156,10 +155,11 @@ int main(int argc, char **argv)
 				counts++;
 		/* Running 'cd' changes the Shell's working directory. */
 			/* Alternative: try chdir inside a forked child: if(fork() == 0) { */
-			if (chdir(exec_argv[1]))
+			if (chdir(exec_argv[1])){
 				/* Error: change directory failed */
 				fprintf(stderr, "cd: failed to chdir %s\n", exec_argv[1]);	
 			/* End alternative: exit(EXIT_SUCCESS);} */
+			}
 
 		}else if (!strncmp(exec_argv[0], "!",1)) {
 			//obtain command number
@@ -174,6 +174,15 @@ int main(int argc, char **argv)
 				case '1':
 					printf("Second option great \n");
 					break;
+				case '2':
+			    	printf("number dos");
+				case '3':
+				case '4':
+				case '5':
+				case '6':
+				case '7':
+				case '8':
+				case '9':
 				default:
 					printf("that number is invalid try from 0 to 9\n");
 			}
@@ -193,6 +202,7 @@ int main(int argc, char **argv)
 				imtheparent(pid_from_fork, run_in_background);
 				/* Parent will continue around the loop. */
 			}
+	    
 
 		} else {
 		/* Execute Commands */
