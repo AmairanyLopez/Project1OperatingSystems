@@ -172,10 +172,10 @@ int main(int argc, char **argv)
 					fprintf(stderr, estack[c]);
 					break;
 				case '1':
-					printf("Second option great \n");
+					fprintf(stderr, estack[c]);
 					break;
 				case '2':
-			    	printf("number dos");
+			    		printf("number dos");
 				case '3':
 				case '4':
 				case '5':
@@ -186,7 +186,9 @@ int main(int argc, char **argv)
 				default:
 					printf("that number is invalid try from 0 to 9\n");
 			}
-			strcpy(exec_argv[0],estack[c]);
+			
+			if(!estack[c]){ 
+			strcpy(exec_argv[0],estack[c]);}
 			///Re execute commands
 	
 			pid_from_fork = fork(); 
