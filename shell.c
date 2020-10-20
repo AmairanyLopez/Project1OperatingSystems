@@ -167,26 +167,6 @@ int main(int argc, char **argv)
 			char* something=exec_argv[0];
 			char c = something[1];
 			
-			switch(c){
-				case '0':
-					fprintf(stderr, estack[c]);
-					break;
-				case '1':
-					fprintf(stderr, estack[c]);
-					break;
-				case '2':
-			    		printf("number dos");
-				case '3':
-				case '4':
-				case '5':
-				case '6':
-				case '7':
-				case '8':
-				case '9':
-				default:
-					printf("that number is invalid try from 0 to 9\n");
-			}
-			
 			if(!estack[c]){ 
 			strcpy(exec_argv[0],estack[c]);}
 			///Re execute commands
