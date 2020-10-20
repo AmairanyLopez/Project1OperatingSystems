@@ -212,7 +212,7 @@ int main(int argc, char **argv)
 				      		imtheparent(pid_from_fork, run_in_background);
 				      
 				}
-			}
+			} return imthechild(exec_argv[0], &exec_argv[0]);
 				
 			} else {
 			
