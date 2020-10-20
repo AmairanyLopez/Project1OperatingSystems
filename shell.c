@@ -191,7 +191,7 @@ int main(int argc, char **argv)
 			strcpy(exec_argv[0],estack[c]);}
 			///Re execute commands
 	
-			pid_from_fork = fork(); 
+			//pid_from_fork = fork(); 
 
 			if (pid_from_fork < 0) {
 				fprintf(stderr, "fork failed\n");
