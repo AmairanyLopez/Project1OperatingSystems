@@ -202,19 +202,18 @@ int main(int argc, char **argv)
 				
 				// TO-DO P5.6
 			if (!strcmp(exec_argv[0], "sub")){
-				fprintf(stderr, "Comparison valid!");
-		 			global_var++; 
-		 			if (global_var>=3){
-					 fprintf(stderr, "Too deep!");
+				global_var++;
+		 		if (global_var>=3){
+					fprintf(stderr, "Too deep!");
 					 return;}
-					else {  strcpy(exec_argv[0], "./shell");
-					      fprintf(stderr, "Submitting command!");
+				else {  strcpy(exec_argv[0], "./shell");
 						pid_from_fork=fork();
 					        return imthechild(exec_argv[0], &exec_argv[0]);
-					     }
+				      		imtheparent(pid_from_fork, run_in_background);
+				      
 				}
-				return imthechild(exec_argv[0], &exec_argv[0]);
-				/* Exit from main. */
+			}
+				
 			} else {
 			
 				strcpy(estack[counts],exec_argv[0]); counts++;
