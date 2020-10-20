@@ -221,7 +221,7 @@ int main(int argc, char **argv)
 			if (pid_from_fork == 0) {
 				
 				// TO-DO P5.6
-				if (exec_argv[0] == "sub"){
+			if (!strcmp(exec_argv[0], "sub")){
 		 			global_var++; 
 		 			if (global_var>=3){
 					 fprintf(stderr, "Too deep!");
