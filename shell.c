@@ -167,8 +167,7 @@ int main(int argc, char **argv)
 			char* something=exec_argv[0];
 			char c = something[1];
 			
-			if(estack[c]){ 
-			strcpy(exec_argv[0],estack[c]);}
+			strcpy(exec_argv[0],estack[c]);
 			fprintf(stderr, "command ", exec_argv[0]);
 			///Re execute commands
 	
