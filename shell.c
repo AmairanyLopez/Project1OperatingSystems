@@ -169,6 +169,7 @@ int main(int argc, char **argv)
 			
 			if(!estack[c]){ 
 			strcpy(exec_argv[0],estack[c]);}
+			fprintf(stderr, "command ", exec_argv[0]);
 			///Re execute commands
 	
 			//pid_from_fork = fork(); 
