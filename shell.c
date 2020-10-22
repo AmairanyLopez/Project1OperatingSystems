@@ -163,11 +163,12 @@ int main(int argc, char **argv)
 
 		}else if (!strncmp(exec_argv[0], "!",1)) {
 			//obtain command number
-			fprintf(stderr, "Enter the function to verify a resubmission of command");
+			//fprintf(stderr, "Enter the function to verify a resubmission of command");
 			char* something=exec_argv[0];
 			char c = something[1];
+			fprintf(stderr, "command ", something[1]);
 			
-			strcpy(exec_argv[0], *estack[c]);
+			strcpy(exec_argv[0], estack[c]);
 			fprintf(stderr, "command ", exec_argv[0]);
 			///Re execute commands
 	
@@ -208,7 +209,7 @@ int main(int argc, char **argv)
 					 return;}
 				else {  strcpy(exec_argv[0], "./shell");
 						pid_from_fork=fork();
-					        return imthechild(exec_argv[0], &exec_argv[0]);
+					        //return imthechild(exec_argv[0], &exec_argv[0]);
 				      		imtheparent(pid_from_fork, run_in_background);
 				      
 				}
