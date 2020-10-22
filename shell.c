@@ -62,7 +62,7 @@ void imtheparent(pid_t child_pid, int run_in_background)
 	}
 
 	// TO-DO P5.4
-	waitpid(child_pid, &child_return_val, WUNTRACED);
+	waitpid(child_pid, &child_return_val, 0);
 	/* Use the WEXITSTATUS to extract the status code from the return value */
 	child_error_code = WEXITSTATUS(child_return_val);
 	fprintf(stderr,
@@ -209,7 +209,7 @@ int main(int argc, char **argv)
 					 return;}
 				else {  strcpy(exec_argv[0], "./shell");
 						pid_from_fork=fork();
-					        //return imthechild(exec_argv[0], &exec_argv[0]);
+					        return imthechild(exec_argv[0], &exec_argv[0]);
 				      		imtheparent(pid_from_fork, run_in_background);
 				      
 				}
