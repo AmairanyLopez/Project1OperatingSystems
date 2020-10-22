@@ -151,7 +151,8 @@ int main(int argc, char **argv)
 
 		} else if (!strcmp(exec_argv[0], "cd") && exec_argc > 1) {
 		//push to stack to save commands 
-				strcpy(estack[counts],exec_argv[0]);
+				char * transferdos=exec_argv[0];
+				strcpy(estack[counts],transferdos);
 				counts++;
 		/* Running 'cd' changes the Shell's working directory. */
 			/* Alternative: try chdir inside a forked child: if(fork() == 0) { */
@@ -216,8 +217,8 @@ int main(int argc, char **argv)
 			} return imthechild(exec_argv[0], &exec_argv[0]);
 				
 			} else {
-			
-				strcpy(estack[counts],exec_argv[0]); counts++;
+				char * transfer=exec_argv[0];
+				strcpy(estack[counts],transfer); counts++;
 				imtheparent(pid_from_fork, run_in_background);
 				/* Parent will continue around the loop. */
 			}
