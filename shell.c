@@ -25,6 +25,7 @@ int imthechild(const char *path_to_exec, char *const args[])
 	// TO-DO P5.1
 	
 	//getting the path to the current directory
+	/*I get the current path for the directory then I concatinate it with the command and submit it to be processed*/
 	char allpaths[50][200];
     char *whole =getenv("PATH");
 	const char delim[2]=":";
@@ -36,7 +37,7 @@ int imthechild(const char *path_to_exec, char *const args[])
 		pad=strtok(NULL,delim);
 	}
 	
-	//store command on temp
+	//store command on temp to concatinate below
 	char *temporary=path_to_exec;	
 	
 	path_to_exec= allpaths[2];
@@ -95,8 +96,9 @@ int main(int argc, char **argv)
 	/* Allow the Shell prompt to display the pid of this process */
 	shell_pid = getpid();
 
-	//create stack here
+	//create stack here to store commands for history
     char* estack[20][10];
+	//to keep count of the commands stored in stack and reset if limit reached
 	int counts=0;
 	
 	while (1) {
@@ -112,8 +114,6 @@ int main(int argc, char **argv)
 		n_read = strlen(buffer);
 		run_in_background = n_read > 2 && buffer[n_read - 2] == '&';
 		buffer[n_read - run_in_background - 1] = '\n';
-
-		// TO-DO P5.3
 
 		/* Parse the arguments: the first argument is the file or command *
 		 * we want to run.                                                */
@@ -162,6 +162,7 @@ int main(int argc, char **argv)
 			/* End alternative: exit(EXIT_SUCCESS);} */
 			}
 
+			//Check if a previous command is being requested by looking for ! after a number
 		}else if (!strncmp(exec_argv[0], "!",1)) {
 			//obtain command number
 			//fprintf(stderr, "Enter the function to verify a resubmission of command");
@@ -170,7 +171,7 @@ int main(int argc, char **argv)
 			fprintf(stderr, "command ", something[1]);
 			
 			strcpy(exec_argv[0], estack[c]);
-			///Re execute commands
+			///Re execute commands from the history stack
 	
 			//pid_from_fork = fork(); 
 
@@ -202,9 +203,11 @@ int main(int argc, char **argv)
 			if (pid_from_fork == 0) {
 				
 				// TO-DO P5.6
+				//Check is its asking to start a sub shell here
 			if (!strcmp(exec_argv[0], "sub")){
-				global_var++;
+				global_var++; //this variable checks that there are no more than 3 sub shells opened
 		 		if (global_var>=3){
+					//If too many subshells return "too deep!"
 					fprintf(stderr, "Too deep!");
 					 return;}
 				else {  strcpy(exec_argv[0], "./shell");
